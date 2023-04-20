@@ -22,4 +22,9 @@ class UsersController < ApplicationController
             render json: { error: "invalid username or password"}, status: :unprocessable_entity
         end
     end
+
+    private
+    def user_params
+        params.permit(:email, :password)
+    end
 end
