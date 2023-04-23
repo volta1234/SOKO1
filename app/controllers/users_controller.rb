@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  # before_action :authorize_user
+  # skip_before_action :authorize_user, only: [:create, :login]
 
     def index
         render json: User.all
@@ -17,11 +19,32 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            render json: @user, status: :created
+          token = encode_token({user_id: @user.id})
+          render json: { user: @user, token: token }, status: :created
         else
-            render json: { error: "invalid username or password"}, status: :unprocessable_entity
+          render json: @user.errors, status: :unprocessable_entity
         end
-    end
+      end
+
+      def update
+        @user = User.find_by(id: params[:id])
+        if @user.update(user_params)
+          render json: { message: "User successfully updated." }, status: :ok
+        else
+          render json: @user.errors.full_messages, status: :unprocessable_entity
+        end
+      end
+
+        def login
+          @user = User.find_by(email: params[:email])
+
+          if @user && @user.authenticate(user_params[:password])
+            token = encode_token({user_id: @user.id})
+            render json: {user: @user, token: token }, status: :ok
+          else
+            render json: { error: "invalid email or password"}, status: :unprocessable_entity
+          end
+        end
 
     private
     def user_params

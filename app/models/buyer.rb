@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class Buyer < ApplicationRecord
     has_secure_password
 
     validates :email, :password, presence: true

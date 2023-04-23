@@ -1,9 +1,9 @@
 import React from "react";
-import BuyerSignup from "./buyersignup";
-import UserSignup from "./usersignup";
-import "./signup.css"
+import "../signup/signup.css"
+import SellerLogin from "./userslogin";
+import BuyerLogin from "./buyerslogin";
 
-export default function Signup() {
+export default function Login() {
     return (
         <>
             <div class="form-body">
@@ -11,10 +11,10 @@ export default function Signup() {
                     <div class="form-holder">
                         <div class="form-content">
                             <div class="form-items">
-                                <h3>Signup Today</h3>
+                                <h3>Login Here</h3>
                                 <div class="requires-validation" novalidate>
-                                    <UserSignup />
-                                    <BuyerSignup />
+                                    <SellerLogin/>
+                                    <BuyerLogin/>
                                 </div>
                             </div>
                         </div>
