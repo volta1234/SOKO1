@@ -5,7 +5,7 @@ export default function Products(){
     const[products, setProducts] = useState([])
 
     useEffect(() => {
-        fetch("/products")
+        fetch("https://soko1.onrender.com/products")
         .then(res => res.json())
         .then(products => setProducts(products))
     },[])
