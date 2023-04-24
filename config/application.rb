@@ -13,7 +13,7 @@ module Soko
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'  # You can replace * with your frontend domain, e.g. 'http://localhost:3000'
+        origins 'https://soko-commerce.vercel.app/products'  # You can replace * with your frontend domain, e.g. 'http://localhost:3000'
         resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
       end
     end

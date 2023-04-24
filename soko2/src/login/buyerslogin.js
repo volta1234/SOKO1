@@ -48,10 +48,11 @@ export default function SellerLogin() {
             },
             body: JSON.stringify({ email, password })
         });
-        const data = await response.json();
+        // const data = await response.json();
 
-        if (data.token) {
-            localStorage.setItem('jwt', data.token);
+        if (response.ok) {
+            const { token } = await response.json();
+            localStorage.setItem('jwt', token);
             navigate("/products")
         } else {
             alert("Invalid Login Details")

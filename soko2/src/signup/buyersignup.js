@@ -56,7 +56,7 @@ export default function BuyerSignup() {
     const data = await response.json();
     if (response.ok) {
       localStorage.setItem("token", data.token);
-      navigate("/login"); // Redirect to the dashboard page
+      navigate("/login");
     } else {
       alert("email already taken")
     }
